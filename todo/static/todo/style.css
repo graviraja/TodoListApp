@@ -1,0 +1,29 @@
+body {
+    background-color: #F2F0EF;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+}
+.heading {
+    align-content: center;
+    color: #2874A6;
+}
+hr { 
+    border-style: inset;
+    border-color: #BFBEBD;
+} 
+.bodycontainer{
+    margin-top: 7em;
+    padding: 30px 30px 50px 30px;
+}
+.taskscontainer{
+    margin-top: 2.5em;
+}
+.tasks{
+    background-color: white;
+    border-radius: 0.3em;
+}
+.donetask{
+    color: #4EEE4E;
+}
+h4 {
+    color: #2874A6;
+}
