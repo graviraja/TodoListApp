@@ -24,6 +24,9 @@ hr {
 .donetask{
     color: #4EEE4E;
 }
+.deletetask{
+    color: red;
+}
 h4 {
     color: #2874A6;
 }
