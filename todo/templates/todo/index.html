@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'todo/style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{% static 'todo/main.js' %}"></script>
 </head>
 <body>
     <div class="container tasks bodycontainer">
@@ -59,7 +61,25 @@
                     <ul class="list-group">
                         {% for todo in todo_list %}
                             {% if not todo.completed %}
-                                <li class="list-group-item">{{ todo.text }}<a href="{% url 'complete' todo.id %}"><span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></a></span></li>
+                                <li class="list-group-item"><span>{{ todo.text }}</span>
+                                    <a href="{% url 'complete' todo.id %}">
+                                        <span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="#" class="edititem">
+                                        <span class="glyphicon glyphicon-edit pull-right edittask" aria-hidden="true"></span>
+                                    </a>
+                                    <div class="updateform">
+                                        <form action="{% url 'update' todo.id %}" method="POST" role="form">
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                {{ updateform.text }}
+                                                <div class="input-group-btn">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
                             {% endif %}
                         {% endfor %}
                     </ul>

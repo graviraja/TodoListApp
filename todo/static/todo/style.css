@@ -24,9 +24,16 @@ hr {
 .donetask{
     color: #4EEE4E;
 }
+.edittask{
+    color: #3498DB;
+    margin-right: 10px;
+}
 .deletetask{
     color: red;
 }
 h4 {
     color: #2874A6;
+}
+.updateform{
+    display: none;
 }

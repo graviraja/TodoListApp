@@ -2,15 +2,15 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
 from .models import Todo
-from .forms import TodoForm
+from .forms import TodoForm, UpdateTodoForm
 
 
 def index(request):
     # main page controller
     todo_list = Todo.objects.order_by('id')
     form = TodoForm()
-
-    context = {'todo_list': todo_list, 'form': form}
+    updateform = UpdateTodoForm()
+    context = {'todo_list': todo_list, 'form': form, 'updateform': updateform}
     return render(request, 'todo/index.html', context)
 
 
@@ -47,5 +47,15 @@ def deleteAllCompleted(request):
 
 def deleteAll(request):
     Todo.objects.all().delete()
+
+    return redirect('index')
+
+
+def updateTask(request, todo_id):
+    form = UpdateTodoForm(request.POST)
+    if form.is_valid():
+        todo = Todo.objects.get(pk=todo_id)
+        todo.text = request.POST['text']
+        todo.save()
 
     return redirect('index')

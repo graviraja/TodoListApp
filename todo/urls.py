@@ -6,5 +6,6 @@ urlpatterns = [
     path('complete/<todo_id>', views.completeTodo, name="complete"),
     path('delete/<todo_id>', views.deleteCompletedTask, name="delete"),
     path('deletecompleted', views.deleteAllCompleted, name="deletecompleted"),
-    path('deleteall', views.deleteAll, name="deleteall")
+    path('deleteall', views.deleteAll, name="deleteall"),
+    path('update/<todo_id>', views.updateTask, name="update")
 ]
