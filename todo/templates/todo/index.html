@@ -27,12 +27,15 @@
         <div class="container taskscontainer">
             <div class="row">
                 <div class="col-md-6 col-md-offset-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" aria-label="...">
-                        <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary">Add Task</button>
+                    <form action="{% url 'add' %}" method="POST" role="form">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            {{ form.text }}
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">Add Task</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-2">
                     <div class="btn-group">
@@ -50,22 +53,22 @@
                     <h4>Tasks list</h4>
                     <hr>
                     <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item">Dapibus ac facilisis in<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item">Morbi leo risus<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item">Porta ac consectetur ac<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item">Vestibulum at eros<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
+                        {% for todo in todo_list %}
+                            {% if not todo.completed %}
+                                <li class="list-group-item">{{ todo.text }}<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-md-4 col-md-offset-1">
                     <h4>Tasks done list</h4>
                     <hr>
                     <ul class="list-group">
-                        <li class="list-group-item"><del>Cras justo odio</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item"><del>Cras justo odio</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item"><del>Cras justo odio</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item"><del>Cras justo odio</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
-                        <li class="list-group-item"><del>Cras justo odio</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
+                        {% for todo in todo_list %}
+                            {% if todo.completed %}
+                                <li class="list-group-item"><del>{{ todo.text }}</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
