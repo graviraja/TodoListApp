@@ -31,3 +31,21 @@ def completeTodo(request, todo_id):
     todo.save()
 
     return redirect('index')
+
+
+def deleteCompletedTask(request, todo_id):
+    Todo.objects.get(pk=todo_id).delete()
+
+    return redirect('index')
+
+
+def deleteAllCompleted(request):
+    Todo.objects.filter(completed__exact=True).delete()
+
+    return redirect('index')
+
+
+def deleteAll(request):
+    Todo.objects.all().delete()
+
+    return redirect('index')

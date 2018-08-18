@@ -39,12 +39,16 @@
                 </div>
                 <div class="col-md-2">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-danger">Delete Completed</button>
+                        <a href="{% url 'deletecompleted' %}">
+                            <button type="button" class="btn btn-danger">Delete Completed</button>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-danger">Delete All</button>
+                        <a href="{% url 'deleteall' %}">
+                            <button type="button" class="btn btn-danger">Delete All</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,7 +70,7 @@
                     <ul class="list-group">
                         {% for todo in todo_list %}
                             {% if todo.completed %}
-                                <li class="list-group-item"><del>{{ todo.text }}</del><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></li>
+                                <li class="list-group-item"><del>{{ todo.text }}</del><a href="{% url 'delete' todo.id %}"><span class="glyphicon glyphicon-trash pull-right deletetask" aria-hidden="true"></span></a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
