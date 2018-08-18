@@ -55,7 +55,7 @@
                     <ul class="list-group">
                         {% for todo in todo_list %}
                             {% if not todo.completed %}
-                                <li class="list-group-item">{{ todo.text }}<span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></span></li>
+                                <li class="list-group-item">{{ todo.text }}<a href="{% url 'complete' todo.id %}"><span class="glyphicon glyphicon-ok pull-right donetask" aria-hidden="true"></a></span></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
